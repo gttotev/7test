@@ -32,4 +32,5 @@ for t in ${2:-$(ls tests)}; do
     fi
 done
 
+[ $res -eq 0 ] && echo "===== All tests PASSED! :) ====="
 exit $res

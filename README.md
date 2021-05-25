@@ -1,14 +1,21 @@
 # 7test
 Test framework for MIPS CPU from lab07, cs154
 
-# Installation
+## Features
+* *AUTOMATIC* assembly of MIPS assembly programs (using MARS)
+* *EXCELLENT* selection of crowd-sourced example tests
+* *EASY* test definition: all you need is three simple text files!
+* *QUICK* turnaround in CPU development and testing cycles
+* *EXTENSIBLE* test runner and simulation code: bash and Python code, respectively
+
+## Installation
 Clone this repo anywhere you see fit
 
-# Usage
+## Usage
 * Write tests in `tests/`
 * Execute `./run_tests.sh` with path to your lab07 dir (containing `cpu.py`)
 
-## Test format
+### Test format
 Each test lives in its own subdir of `tests/` and can contain:
 * `prgm.asm`:   (optional) MIPS assembly program, see 'MARS assembler' section below
 * `prgm.hex`:   assembled program, one hex instruction per line
@@ -27,7 +34,7 @@ See:
 * `cpu_test.py` for simulation code (including test file parsing)
 * `run_tests.sh` for the test runner (bash connoisseurs only ;)
 
-## MARS assembler
+### MARS assembler
 If you include a `prgm.asm` file in a test dir, it will be assembled *automatically*
 into `prgm.hex` using the bundled MARS assembler when running tests
 
@@ -41,7 +48,7 @@ To use MARS to *manually* assemble `prgm.asm` into `prgm.hex` (used in `run_test
 java -jar ./bin/mars.jar a dump .text HexText <prgm.hex> <prgm.asm>
 ```
 
-# Contributing
+## Contributing
 It's easy to write your own 7test! And very commendable to contribute it back!
 
 * Fork the GitHub repo and clone it down

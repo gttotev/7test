@@ -1,7 +1,7 @@
 .text
 main:
     lui $t0, 900
-    ori $t1, 0xBEEF
+    ori $t1, $zero, 0xBEEF
 
     sw $t0, 900($zero)
     sw $t1, 800($zero)

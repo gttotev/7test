@@ -48,7 +48,7 @@ def main() -> int:
 
     res = 0
     res |= err_cmp(rf_expect, rf_actual, 'rf')
-    res |= err_cmp(dm_expect, dm_actual, 'dm')
+    res |= err_cmp(dm_expect, dm_actual, 'd_mem')
 
     return res
 

@@ -55,6 +55,9 @@ To use MARS to *manually* assemble file `prgm.asm` into `prgm.hex` (as seen in `
 java -jar ./bin/mars.jar a dump .text HexText prgm.hex prgm.asm
 ```
 
+**DISCLAIMER**: using MARS to auto-assemble *may* result in generated code using `$at` which may
+cause tests to fail if not taken into account. Use at your own risk!
+
 ## Contributing
 It's easy to write your own 7test! And very commendable to contribute it back!
 

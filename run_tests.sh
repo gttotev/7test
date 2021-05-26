@@ -10,6 +10,7 @@ realpath() {
 
 export PYTHONPATH="$(realpath $1)"
 WD="$(dirname $(realpath $BASH_SOURCE))"
+TMP_OUT=$(mktemp)
 res=0
 
 echo "======= Welcome to 7test! ======="
@@ -33,11 +34,11 @@ for t in ${2:-$(ls "$WD/tests")}; do
         fi
     fi
 
-    python "$WD/cpu_test.py" prgm.hex rf.exp dm.exp &> /tmp/7test.out
+    python "$WD/cpu_test.py" prgm.hex rf.exp dm.exp &> $TMP_OUT
     if [ $? -ne 0 ]; then
         echo [$t] FAILED!
         echo "================================="
-        cat /tmp/7test.out
+        cat $TMP_OUT
         echo "================================="
         res=1
     else

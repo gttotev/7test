@@ -25,7 +25,7 @@ for t in ${2:-$(ls tests)}; do
             continue
         fi
     fi
-    if ! "$WD/cpu_test.py" prgm.hex rf.exp dm.exp; then
+    if ! python "$WD/cpu_test.py" prgm.hex rf.exp dm.exp; then
         echo [$t] FAILED!
         echo
         res=1

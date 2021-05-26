@@ -43,9 +43,9 @@ a drastically shortened testing cyle
 
 *Note*: you will still need to manually fill out `rf.exp` and `dm.exp`
 
-To use MARS to *manually* assemble `prgm.asm` into `prgm.hex` (used in `run_tests.sh`):
+To use MARS to *manually* assemble file `prgm.asm` into `prgm.hex` (used in `run_tests.sh`):
 ```bash
-java -jar ./bin/mars.jar a dump .text HexText <prgm.hex> <prgm.asm>
+java -jar ./bin/mars.jar a dump .text HexText prgm.hex prgm.asm
 ```
 
 ## Contributing

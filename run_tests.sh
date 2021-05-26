@@ -4,11 +4,18 @@ if [ -z "$1" ]; then
     exit -1
 fi
 
+realpath() {
+    [[ $1 = /* ]] && echo "$1" || echo "$PWD/${1#./}"
+}
+
 export PYTHONPATH="$(realpath $1)"
 WD="$(dirname $(realpath $BASH_SOURCE))"
 res=0
 
-for t in ${2:-$(ls tests)}; do
+echo "======= Welcome to 7test! ======="
+echo
+
+for t in ${2:-$(ls "$WD/tests")}; do
     cd "$WD/tests/$t"
     if [ ! -f prgm.asm -a ! -f prgm.hex ] || [ ! -f rf.exp ] || [ ! -f dm.exp ]; then
         echo "[$t] SKIPPED: missing required files prgm.(hex|asm), rf.exp, dm.exp"
@@ -25,12 +32,19 @@ for t in ${2:-$(ls tests)}; do
             continue
         fi
     fi
-    if ! python "$WD/cpu_test.py" prgm.hex rf.exp dm.exp; then
+
+    python "$WD/cpu_test.py" prgm.hex rf.exp dm.exp &> /tmp/7test.out
+    if [ $? -ne 0 ]; then
         echo [$t] FAILED!
-        echo
+        echo "================================="
+        cat /tmp/7test.out
+        echo "================================="
         res=1
+    else
+        echo [$t] PASSED
     fi
+    echo
 done
 
-[ $res -eq 0 ] && echo "===== All tests PASSED! :) ====="
+[ $res -eq 0 ] && echo "===== All tests PASSED! :)  =====" || echo "===== Some tests FAILED! :( ====="
 exit $res

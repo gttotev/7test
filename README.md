@@ -12,10 +12,17 @@ Test framework for MIPS CPU from lab07, cs154
 Clone this repo anywhere you see fit
 
 ## Usage
-* Write tests in `tests/`
-* Execute `./run_tests.sh` with path to your lab07 dir (containing `cpu.py`)
+### Basic
+```bash
+./run_tests.sh LAB07_DIR [test]
+```
+Where:
+* `LAB07_DIR` is the path to the directory containing your `cpu.py`
+* `test` is the name of the test to run, from names of `test/` subdirs; omit to run all tests
 
 ### Test format
+You can easily define your own tests for 7test to execute
+
 Each test lives in its own subdir of `tests/` and can contain:
 * `prgm.asm`:   (optional) MIPS assembly program, see 'MARS assembler' section below
 * `prgm.hex`:   assembled program, one hex instruction per line
@@ -43,7 +50,7 @@ a drastically shortened testing cyle
 
 *Note*: you will still need to manually fill out `rf.exp` and `dm.exp`
 
-To use MARS to *manually* assemble file `prgm.asm` into `prgm.hex` (used in `run_tests.sh`):
+To use MARS to *manually* assemble file `prgm.asm` into `prgm.hex` (as seen in `run_tests.sh`):
 ```bash
 java -jar ./bin/mars.jar a dump .text HexText prgm.hex prgm.asm
 ```

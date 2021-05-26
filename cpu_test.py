@@ -12,12 +12,21 @@ def diff_dict(d: dict) -> list:
     return [f'| {k:<10} {v:<10} ; {k:#010x} {v:#010x} |\n' for k, v in sorted(d.items())]
 
 def err_cmp(expect: dict, actual: dict, msg: str) -> int:
-    if expect == actual:
-        return 0
+    error = False
+    if (msg == "rf" and 0 in actual and 0 not in expect):
+        if (actual[0] != 0):
+            error = True
+        else:
+            actual.pop(0)
+    if expect != actual:
+        error = True
 
-    sys.stderr.writelines(difflib.unified_diff(diff_dict(expect), diff_dict(actual), f'{msg} expected', f'{msg} actual'))
-    sys.stderr.write('\n')
-    return 1
+    if error:
+        sys.stderr.writelines(difflib.unified_diff(diff_dict(expect), diff_dict(actual), f'{msg} expected', f'{msg} actual'))
+        sys.stderr.write('\n')
+        return 1
+    else:
+        return 0
 
 def main() -> int:
     if len(sys.argv) != 4:
